@@ -1,0 +1,35 @@
+/* src/components/Navbar.css */
+
+.navbar {
+    background-color: #007bff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .navbar ul li {
+    display: inline;
+  }
+  
+  .navbar ul li a, .navbar ul li button {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .navbar ul li a:hover, .navbar ul li button:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+  }
+  

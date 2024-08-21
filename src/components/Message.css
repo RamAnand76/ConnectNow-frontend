@@ -1,0 +1,47 @@
+.message {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .current-user {
+    justify-content: flex-end;
+  }
+  
+  .other-user {
+    justify-content: flex-start;
+  }
+  
+  .message-content {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .current-user-content {
+    background-color: #F1F0F0;
+    text-align: right;
+    color: #000;
+  }
+  
+  .other-user-content {
+    background-color: #DCF8C6;
+    text-align: left;
+    color: #000;
+  }
+  
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .message-header h4 {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .message-header span {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  

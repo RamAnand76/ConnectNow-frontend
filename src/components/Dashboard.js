@@ -1,32 +1,48 @@
 // src/pages/Dashboard.js
 
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {  Link } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from './Navbar';
+import axiosInstance from '../axiosInstance';
 
 function Dashboard() {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
 
-  const handleLogout = async () => {
-    try {
-      const token = localStorage.getItem('access_token');
-      await axios.post('http://localhost:8000/api/auth/logout/', null, {
-        headers: {
-          Authorization: `Bearer ${token}`
+  useEffect(() => {
+    // Fetch accepted interests
+    const fetchUsers = async () => {
+        try {
+            const response = await axiosInstance.get('api/auth/interests/accepted/', {
+                headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
+            });
+            setUsers(response.data);
+        } catch (error) {
+            console.error('Failed to fetch users:', error.response.data);
         }
-      });
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('refresh_token');
-      navigate('/login');
-    } catch (error) {
-      alert('Error during logout');
-    }
-  };
+    };
+
+    fetchUsers();
+}, []);
+
+
 
   return (
+    
     <div>
-      <h2>Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
+      <Navbar />
+      <h2>Welcome to Your Dashboard</h2>
+      <div className="dashboard">
+            <h2>Accepted Interest Users</h2>
+            <ul>
+                {users.map(user => (
+                    <li key={user.username}>
+                        <Link to={`/chat/${user.username}`}>{user.username}</Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
     </div>
   );
 }
