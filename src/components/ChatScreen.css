@@ -5,27 +5,34 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f6;
+    color: #2d3748;
 }
 
 .chat-screen {
     display: flex;
     flex-direction: column;
     height: 100vh; /* Full viewport height */
+    
 }
 
 .chat-container {
     display: flex;
-    height: calc(100vh - 70px); /* Full viewport height minus the height of the navbar */
-    background-color: #ffffff;
-}
+    height: 100%; /* Full viewport height minus the height of the navbar */
+    background-color: #2d3748;
+    width: 100%; /* Ensures the container takes full width */
+  }
+
+  .sidebar.hidden {
+    display: none; /* Hide the sidebar on mobile when a chat is selected */
+  }
 
 .sidebar {
-    width: 30%;
     background-color: #2d3748;
     color: #e2e8f0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: width 0.3s ease-in-out;
 }
 
 .sidebar-header {
@@ -33,6 +40,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    border-bottom: 1px solid #4a5568;
 }
 
 .logo {
@@ -112,12 +120,17 @@ body {
 }
 
 .chat-main {
-    width: 80%;
-    background-color: #edf2f7;
+    flex: 1;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevent overflow */
+    padding: 10px;
+    width: 100%;
 }
+
+.chat-main.hidden {
+    display: none; /* Hide chat main on mobile when no chat is selected */
+  }
 
 .chat-header {
     padding: 20px;
@@ -130,9 +143,41 @@ body {
     font-size: 24px;
 }
 
-.chat-header p {
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.back-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Makes the Chat header lokk clean and align arrow to left of username.*/
+.chat-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header-info h2 {
     margin: 0;
-    color: #718096;
+    font-size: 18px;
+    color: #fff;
+}
+
+.chat-header-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #cbd5e0;
 }
 
 .messages {
@@ -189,6 +234,7 @@ body {
 }
 
 .message-input {
+    width: 70%;
     flex: 1;
     padding: 10px;
     border-radius: 20px;
@@ -211,6 +257,13 @@ body {
     background-color: #2b6cb0;
 }
 
+.send-button svg {
+    width: 24px;
+    height: 24px;
+    fill: #feffff;
+    transition: fill 0.2s ease-in-out;
+}
+
 .chat-details {
     width: 00%;
     background-color: #ffffff;
@@ -229,3 +282,31 @@ body {
     margin-right: 15px;
     object-fit: cover; /* Ensure the image covers the container */
 }
+
+
+@media (max-width: 480px) {
+    .message-input {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .send-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .chat-container {
+      flex-direction: column;
+    }
+  
+    .chat-main {
+      flex: 1;
+      width: 100%;
+    }
+  
+    .back-button {
+      display: block;
+    }
+  }

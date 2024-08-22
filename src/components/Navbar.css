@@ -1,83 +1,153 @@
 /* src/components/Navbar.css */
 
 .navbar {
-    background-color: #ffffff; /* White background */
-    padding: 15px 30px; /* Padding for spacing */
-    border-bottom: 1px solid #ddd; /* Subtle border for separation */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
-    
-    
-  }
-  
-  .navbar .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff; /* Blue color for the logo */
-    text-decoration: none;
-    display: flex;
-    align-items: center;
+  background-color: #ffffff; /* White background */
+  padding: 15px 30px; /* Padding for spacing */
+  border-bottom: 1px solid #ddd; /* Subtle border for separation */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  height: 4%;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff; /* Blue color for the logo */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px; /* Space between items */
-    align-items: center; /* Center align items vertically */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* Space between items */
+  align-items: center; /* Center align items vertically */
 }
 
 .navbar ul li {
-    position: relative; /* For positioning the hover text */
+  position: relative; /* For positioning the hover text */
 }
 
 .navbar ul li a,
 .navbar ul li button {
-    color: #333; /* Dark color for text */
-    font-size: 20px; /* Icon size */
-    padding: 10px;
-    border: none;
-    background: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
-    display: flex;
-    align-items: center; /* Center align icon and text */
+  color: #333; /* Dark color for text */
+  font-size: 20px; /* Icon size */
+  padding: 10px;
+  border: none;
+  background: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+  display: flex;
+  align-items: center; /* Center align icon and text */
 }
 
 .navbar ul li a:hover,
 .navbar ul li button:hover,
 .navbar ul li.active a {
-    background-color: #007bff; /* Blue background on hover or active */
-    color: white; /* White text on hover or active */
-    transform: translateY(-2px); /* Subtle lift effect */
+  background-color: #0056b3; /* Slightly darker blue for hover or active */
+  color: white; /* White text on hover or active */
+  transform: translateY(-2px); /* Subtle lift effect */
 }
 
 .navbar ul li a.active,
 .navbar ul li button.active {
-    background-color: #007bff; /* Blue background for active */
-    color: white; /* White text for active */
+  background-color: #0056b3; /* Darker blue background for active */
+  color: white; /* White text for active */
 }
 
 .navbar ul li span {
-    margin-top: 5px;
-    font-size: 12px;
-    background-color: rgba(0, 0, 0, 0.80); /* Semi-transparent background */
-    color: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    position: absolute;
-    bottom: -25px; /* Position the text below the icon */
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
+  margin-top: 5px;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.80); /* Semi-transparent background */
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  bottom: -25px; /* Position the text below the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
 .navbar ul li:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Navbar Styles */
+
+
+.mobile-navbar {
+  display: flex; /* Flexbox for proper spacing and alignment */
+  position: fixed;
+  display: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  justify-content: space-around; /* Ensure icons are spaced evenly */
+  align-items: center; /* Center items vertically */
+}
+
+.mobile-navbar ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%; /* Take full width to align items properly */
+  justify-content: space-around; /* Distribute items evenly */
+  align-items: center; /* Center items vertically */
+}
+
+.mobile-navbar ul li {
+  flex: 1; /* Equal space for each menu item */
+  text-align: center;
+}
+
+.mobile-navbar ul li a,
+.mobile-navbar ul li button {
+  color: #555;
+  font-size: 22px;
+  padding: 10px;
+  border: none;
+  background: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.mobile-navbar ul li a:hover,
+.mobile-navbar ul li button:hover,
+.mobile-navbar ul li.active a {
+  background-color: #007bff;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+      display: none; /* Hide the desktop navbar on mobile */
+  }
+
+  .mobile-header {
+      display: flex; /* Show the mobile header on mobile */
+  }
+
+  .mobile-navbar {
+      display: flex; /* Show the mobile navbar on mobile */
+  }
 }
