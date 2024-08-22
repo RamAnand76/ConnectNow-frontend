@@ -1,9 +1,22 @@
 /* src/components/Navbar.css */
 
 .navbar {
-    background-color: #007bff;
-    padding: 10px;
-    text-align: center;
+    background-color: #ffffff; /* White background */
+    padding: 15px 30px; /* Padding for spacing */
+    border-bottom: 1px solid #ddd; /* Subtle border for separation */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  .navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff; /* Blue color for the logo */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
   }
   
   .navbar ul {
@@ -11,25 +24,49 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around;
+    gap: 20px; /* Space between items */
   }
   
   .navbar ul li {
-    display: inline;
+    position: relative; /* For positioning the hover text */
   }
   
-  .navbar ul li a, .navbar ul li button {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 8px 16px;
-    background: none;
+  .navbar ul li a,
+  .navbar ul li button {
+    color: #333; /* Dark color for text */
+    font-size: 20px; /* Icon size */
+    padding: 10px;
     border: none;
-    cursor: pointer;
+    background: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
   }
   
-  .navbar ul li a:hover, .navbar ul li button:hover {
-    background-color: #0056b3;
-    border-radius: 5px;
+  .navbar ul li a:hover,
+  .navbar ul li button:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
+  }
+  
+  .navbar ul li span {
+    margin-top: 5px;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.80); /* Semi-transparent background */
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: -25px; /* Position the text below the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+  
+  .navbar ul li:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
   }
   

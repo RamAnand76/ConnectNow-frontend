@@ -1,0 +1,52 @@
+.connections-list {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .connections-list h3 {
+    margin-bottom: 15px;
+  }
+  
+  .connections-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .connection-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .connection-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .connection-details {
+    flex: 1;
+  }
+  
+  .connection-name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .send-message-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .send-message-button:hover {
+    background-color: #0056b3;
+  }
+  

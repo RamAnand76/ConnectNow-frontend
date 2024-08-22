@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ChatScreen.css';
 import './Message.css';
 import axiosInstance from '../axiosInstance';
+import Navbar from './Navbar';
+
 
 const ChatScreen = () => {
   const [users, setUsers] = useState([]);
@@ -71,71 +73,68 @@ const ChatScreen = () => {
   };
 
   return (
-    <div className="chat-container">
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <div className="logo">CH</div>
-          <input type="text" placeholder="Search" className="search-bar" />
-        </div>
-        <div className="chat-list">
-          {users.map(user => (
-            <ChatItem
-              key={user.username}
-              name={user.username}
-              message="Last message preview"
-              time="Just now"
-              active={selectedUser === user.username}
-              onClick={() => setSelectedUser(user.username)}
-            />
-          ))}
-        </div>
-        <div className="sidebar-footer">
-          <SidebarIcon icon="settings" />
-          <SidebarIcon icon="logout" />
-        </div>
-      </aside>
+    <><Navbar /><div className="chat-container">
+          <aside className="sidebar">
+              <div className="sidebar-header">
+                  <div className="logo">Messages</div>
+              </div>
+              <div className="chat-list">
+                  {users.map(user => (
+                      <ChatItem
+                          key={user.username}
+                          name={user.username}
+                          message="Last message preview"
+                          time="Just now"
+                          active={selectedUser === user.username}
+                          onClick={() => setSelectedUser(user.username)} />
+                  ))}
+              </div>
+              <div className="sidebar-footer">
+                  <SidebarIcon icon="settings" />
+                  <SidebarIcon icon="logout" />
+              </div>
+          </aside>
 
-      <main className="chat-main">
-        {selectedUser ? (
-          <>
-            <ChatHeader title={selectedUser} members="Online" />
-            <div className="messages">
-              {messages.map(message => (
-                <Message
-                  key={message.id}
-                  name={message.sender}
-                  time={new Date(message.timestamp).toLocaleTimeString()}
-                  text={message.content}
-                  isCurrentUser={message.sender === selectedUser} // Replace with actual current username
-                />
-              ))}
-            </div>
-            <div className="message-input-area">
-              <input
-                type="text"
-                placeholder="Type a message..."
-                className="message-input"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-              />
-              <button
-                className="send-button"
-                onClick={handleSend}
-                disabled={loading}
-              >
-                {loading ? 'Sending...' : 'Send'}
-              </button>
-            </div>
-          </>
-        ) : (
-          <p>Select a user to start chatting</p>
-        )}
-      </main>
+          <main className="chat-main">
+              {selectedUser ? (
+                  <>
+                      <ChatHeader title={selectedUser} members="Online" />
+                      <div className="messages">
+                          {messages.map(message => (
+                              <Message
+                                  key={message.id}
+                                  name={message.sender}
+                                  time={new Date(message.timestamp).toLocaleTimeString()}
+                                  text={message.content}
+                                  isCurrentUser={message.sender === selectedUser} // Replace with actual current username
+                              />
+                          ))}
+                      </div>
+                      <div className="message-input-area">
+                          <input
+                              type="text"
+                              placeholder="Type a message..."
+                              className="message-input"
+                              value={newMessage}
+                              onChange={(e) => setNewMessage(e.target.value)} />
+                          <button
+                              className="send-button"
+                              onClick={handleSend}
+                              disabled={loading}
+                          >
+                              {loading ? 'Sending...' : 'Send'}
+                          </button>
+                      </div>
+                  </>
+              ) : (
+                  <p>Select a user to start chatting</p>
+              )}
+          </main>
 
-      <aside className="chat-details">
-        <ChatDetails />
-      </aside>
-    </div>
+          <aside className="chat-details">
+              <ChatDetails />
+          </aside>
+      </div></>
   );
 };
 

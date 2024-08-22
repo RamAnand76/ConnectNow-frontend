@@ -1,37 +1,129 @@
-/* Add this to your CSS file */
+/* Dashboard.css */
 
-.dashboard {
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+  }
+  
+  .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
   }
   
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .profile-picture {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .profile-picture img {
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  .profile-picture input {
-    margin-bottom: 10px;
+  .profile h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
   }
   
   .profile-details {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
   
-  .profile-details p {
-    margin: 5px 0;
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    background-color: #f0f0f0;
   }
   
+  .profile-picture-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input[type="file"] {
+    margin: 10px 0;
+  }
+  
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .toast-container {
+    font-family: 'Arial', sans-serif;
+  }
+  
+
+ /* src/components/Dashboard.css */
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    margin-left: 70px; /* Align with the sidebar */
+    gap: 20px; /* Space between profile and connections list */
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 65%; /* Adjust width as needed */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.connections-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 30%; /* Adjust width as needed */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+        margin-left: 0; /* Remove left margin for mobile */
+    }
+
+    .profile-card,
+    .connections-card {
+        width: 100%; /* Ensure full width on mobile */
+    }
+}

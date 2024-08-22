@@ -1,0 +1,23 @@
+.navbar-container {
+  height: 100vh;
+  display: flex;
+  z-index: 1000;
+}
+
+.custom-sidebar {
+  background-color: #000000; /* Change background color as needed */
+}
+
+.sidebar-link {
+  color: #fff; /* Icon color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.sidebar-link:hover {
+  background-color: #343a40; /* Hover effect */
+  color: #ffffff; /* Hover icon color */
+}
+
