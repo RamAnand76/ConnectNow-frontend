@@ -34,7 +34,7 @@ function ConnectionsList({ loggedInUser }) {
             />
             <div>
               <p>{connection.first_name} {connection.last_name}</p>
-              <button className="send-message-btn">Send Message</button>
+              <button className="send-message-btn">Connection</button>
             </div>
           </li>
         ))}

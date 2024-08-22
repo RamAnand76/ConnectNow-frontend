@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <><nav className="navbar">
-      <a href="/" className="logo">
+      <a href="/dashboard" className="logo">
         ConnectNow
       </a>
 

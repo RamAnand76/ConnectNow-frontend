@@ -10,7 +10,7 @@ import CustomPopup from './CustomPopup';
 function BrowseUsers() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [message, setMessage] = useState('');
+  //const [message, setMessage] = useState('');
   const [messages, setMessages] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [popup, setPopup] = useState({ show: false, message: '', type: '' });

@@ -1,13 +1,11 @@
-// src/pages/CustomPopup.js
-
 import React from 'react';
 import './CustomPopup.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
-function CustomPopup({ message, type }) {
+function CustomPopup({ message, type, show }) {
   return (
-    <div className={`popup ${type}`}>
+    <div className={`popup ${type} ${show ? 'show' : ''}`}>
       <div className="icon-container">
         {type === 'success' ? (
           <FontAwesomeIcon icon={faCheckCircle} className="popup-icon success-icon" />
