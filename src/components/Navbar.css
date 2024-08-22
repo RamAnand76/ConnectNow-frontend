@@ -8,6 +8,8 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+    
+    
   }
   
   .navbar .logo {
@@ -17,22 +19,23 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-  }
-  
-  .navbar ul {
+}
+
+.navbar ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     gap: 20px; /* Space between items */
-  }
-  
-  .navbar ul li {
+    align-items: center; /* Center align items vertically */
+}
+
+.navbar ul li {
     position: relative; /* For positioning the hover text */
-  }
-  
-  .navbar ul li a,
-  .navbar ul li button {
+}
+
+.navbar ul li a,
+.navbar ul li button {
     color: #333; /* Dark color for text */
     font-size: 20px; /* Icon size */
     padding: 10px;
@@ -40,16 +43,25 @@
     background: none;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
-  }
-  
-  .navbar ul li a:hover,
-  .navbar ul li button:hover {
-    background-color: #007bff; /* Blue background on hover */
-    color: white; /* White text on hover */
+    display: flex;
+    align-items: center; /* Center align icon and text */
+}
+
+.navbar ul li a:hover,
+.navbar ul li button:hover,
+.navbar ul li.active a {
+    background-color: #007bff; /* Blue background on hover or active */
+    color: white; /* White text on hover or active */
     transform: translateY(-2px); /* Subtle lift effect */
-  }
-  
-  .navbar ul li span {
+}
+
+.navbar ul li a.active,
+.navbar ul li button.active {
+    background-color: #007bff; /* Blue background for active */
+    color: white; /* White text for active */
+}
+
+.navbar ul li span {
     margin-top: 5px;
     font-size: 12px;
     background-color: rgba(0, 0, 0, 0.80); /* Semi-transparent background */
@@ -64,9 +76,8 @@
     transform: translateX(-50%);
     white-space: nowrap;
 }
-  
-  .navbar ul li:hover .tooltip {
+
+.navbar ul li:hover .tooltip {
     opacity: 1;
     visibility: visible;
-  }
-  
+}

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css'; // Import the updated CSS file
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUserFriends, faEnvelope, faBell, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
+  const [activeItem, setActiveItem] = useState(window.location.pathname);
+
   return (
     <nav className="navbar">
       <a href="/" className="logo">
@@ -12,26 +14,26 @@ function Navbar() {
       </a>
       
       <ul>
-        <li>
-          <Link to="/dashboard">
+        <li className={activeItem === '/dashboard' ? 'active' : ''}>
+          <Link to="/dashboard" onClick={() => setActiveItem('/dashboard')}>
             <FontAwesomeIcon icon={faHome} />
             <span className="tooltip">Home</span>
           </Link>
         </li>
-        <li>
-          <Link to="/browse-users">
+        <li className={activeItem === '/browse-users' ? 'active' : ''}>
+          <Link to="/browse-users" onClick={() => setActiveItem('/browse-users')}>
             <FontAwesomeIcon icon={faUserFriends} />
             <span className="tooltip">Find Connections</span>
           </Link>
         </li>
-        <li>
-          <Link to="/chat">
+        <li className={activeItem === '/chat' ? 'active' : ''}>
+          <Link to="/chat" onClick={() => setActiveItem('/chat')}>
             <FontAwesomeIcon icon={faEnvelope} />
             <span className="tooltip">Messages</span>
           </Link>
         </li>
-        <li>
-          <Link to="/received-interests">
+        <li className={activeItem === '/received-interests' ? 'active' : ''}>
+          <Link to="/received-interests" onClick={() => setActiveItem('/received-interests')}>
             <FontAwesomeIcon icon={faBell} />
             <span className="tooltip">Received Interests</span>
           </Link>

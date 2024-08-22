@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { FaSearch, FaUserCircle, FaSadTear } from 'react-icons/fa';
 import Navbar from './Navbar';
-import './BrowseUsers.css'; // Import the CSS file for styling
-import CustomPopup from './CustomPopup'; // Import the custom popup component
+import './BrowseUsers.css';
+import CustomPopup from './CustomPopup';
 
 function BrowseUsers() {
   const [users, setUsers] = useState([]);
@@ -12,7 +13,7 @@ function BrowseUsers() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
-  const [popup, setPopup] = useState({ show: false, message: '', type: '' }); // For showing the custom popup
+  const [popup, setPopup] = useState({ show: false, message: '', type: '' });
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -57,11 +58,11 @@ function BrowseUsers() {
         }
       );
       setPopup({ show: true, message: 'Interest sent successfully!', type: 'success' });
-      setTimeout(() => setPopup({ show: false }), 3000); // Hide popup after 3 seconds
+      setTimeout(() => setPopup({ show: false }), 3000);
       console.log('Interest sent:', response.data);
     } catch (error) {
       setPopup({ show: true, message: 'Failed to send interest!', type: 'error' });
-      setTimeout(() => setPopup({ show: false }), 3000); // Hide popup after 3 seconds
+      setTimeout(() => setPopup({ show: false }), 3000);
       console.error('Failed to send interest:', error.response.data);
     }
   };
@@ -72,6 +73,7 @@ function BrowseUsers() {
       <div className="browse-users">
         <h2>Find Connections</h2>
         <div className="search-bar">
+          <FaSearch className="search-icon" />
           <input
             type="text"
             placeholder="Search for users..."
@@ -87,7 +89,7 @@ function BrowseUsers() {
                 <li key={user.id} className="user-card">
                   <div className="user-info">
                     <img
-                      src={user.profile_picture || 'https://via.placeholder.com/50'}
+                      src={user.profile_picture || <FaUserCircle className="default-avatar" />}
                       alt={user.username}
                       className="user-avatar"
                     />
@@ -112,7 +114,12 @@ function BrowseUsers() {
               ))}
             </ul>
           ) : (
-            searchQuery && <p className="no-results">No users found</p>
+            searchQuery && (
+              <div className="no-results">
+                <FaSadTear className="no-results-icon" />
+                <p>No users found</p>
+              </div>
+            )
           )}
         </div>
       </div>
