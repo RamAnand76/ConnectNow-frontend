@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
-import './ReceivedInterests.css';
+import '../styles/ReceivedInterests.css';
 
 function ReceivedInterests() {
   const [interests, setInterests] = useState([]);

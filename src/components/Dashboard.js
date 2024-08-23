@@ -3,12 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
-import './Dashboard.css';
-import { toast, ToastContainer } from 'react-toastify';
+import '../styles/Dashboard.css';
+import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../components/Loading';
 import ConnectionsList from './ConnectionsList';
 import  defaultProfile from '../constants/default-profile.png';
+import CustomPopup from './CustomPopup';
 
 function Dashboard() {
   const [user, setUser] = useState({});
@@ -18,6 +19,7 @@ function Dashboard() {
   const [email, setEmail] = useState('');
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [popup, setPopup] = useState({ show: false, message: '', type: '' });
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -46,29 +48,55 @@ function Dashboard() {
 
   const handleUpdateProfile = async () => {
     const formData = new FormData();
-    formData.append('profile_picture', file);
-    formData.append('first_name', firstName);
-    formData.append('last_name', lastName);
-    formData.append('email', email);
+
+    if (file) { // Only append the profile picture if a new one is selected
+        formData.append('profile_picture', file);
+    }
+
+    if (firstName !== user.first_name) {
+        formData.append('first_name', firstName);
+    }
+
+    if (lastName !== user.last_name) {
+        formData.append('last_name', lastName);
+    }
+
+    if (email !== user.email) {
+        formData.append('email', email);
+    }
 
     try {
-      await axios.patch('http://localhost:8000/api/auth/profile/', formData, {
-        headers: { 
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-          'Content-Type': 'multipart/form-data'
+        const response = await axios.patch('http://localhost:8000/api/auth/profile/', formData, {
+            headers: { 
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        if (file) { // Only update profile picture if a new one was uploaded
+            setProfilePic(URL.createObjectURL(file));
         }
-      });
-      setProfilePic(URL.createObjectURL(file));
-      toast.success('Profile updated successfully');
+
+        setUser({
+            ...user,
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            profile_picture: response.data.profile_picture || user.profile_picture,
+        });
+
+        setPopup({ show: true, message: 'Profile Updated successfully!', type: 'success' });
     } catch (error) {
-      if (error.response && error.response.data.username) {
-        toast.error('Username already exists');
-      } else {
-        toast.error('Failed to update profile');
-      }
-      console.error('Failed to update profile:', error.response.data);
+        if (error.response && error.response.data.email) {
+            setPopup({ show: true, message: 'Email already used!', type: 'error' });
+        } else {
+            setPopup({ show: true, message: 'Failed to Update!', type: 'error' });
+        }
+    } finally {
+        setTimeout(() => setPopup({ show: false }), 1000);
     }
-  };
+};
+
 
   if (loading) {
     return <Loading />;
@@ -121,7 +149,7 @@ function Dashboard() {
           <ConnectionsList loggedInUser={user} />
         </div>
       </div>
-      <ToastContainer />
+      {popup.show && <CustomPopup message={popup.message} type={popup.type} />}
     </div>
   );
 }

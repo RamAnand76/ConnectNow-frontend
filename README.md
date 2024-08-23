@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# User Connections Web Application
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+This is a web application that allows users to browse, connect, and interact with other users. Users can create an account, log in, browse other users, and send interest messages. The project is built using React for the frontend and a Django REST API for the backend.
 
-### `npm start`
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Prerequisites](#prerequisites)
+- [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Project Structure](#project-structure)
+- [Additional Information](#additional-information)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+Before you start, ensure that you have the following installed on your local machine:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Node.js** (v14.x or higher)
+- **npm** (v6.x or higher)
+- **Python** (v3.7 or higher)
+- **Django** (v3.x or higher)
+- **Django REST Framework** (v3.x or higher)
 
-### `npm run build`
+## Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend (React)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The React frontend requires the following npm packages:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `axios`: For making HTTP requests to the backend.
+- `react-router-dom`: For handling routing in the React app.
+- `react-icons`: For using icons in the UI.
 
-### `npm run eject`
+### Backend (Django)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The Django backend requires the following Python packages:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `djangorestframework`: For creating RESTful APIs.
+- `djoser`: For user authentication and registration.
+- `corsheaders`: For handling CORS (Cross-Origin Resource Sharing) issues.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 1. Clone the Repository(Backend)
 
-## Learn More
+```bash
+git clone https://github.com/RamAnand76/ConnectNow-backend.git
+cd ConnectNow-backend
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2. Create and activate a virtual environment::
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
 
-### Code Splitting
+### 3. Install the required Python packages:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+pip install -r requirements.txt
+```
 
-### Analyzing the Bundle Size
+### 4. Run migrations and create a superuser:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+```
 
-### Making a Progressive Web App
+### 5. Set Up the Frontend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+git clone https://github.com/RamAnand76/ConnectNow-frontend.git
+cd Connect-frontend
+```
 
-### Advanced Configuration
+### 6. Install the npm packages:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm install
+```
 
-### Deployment
+### 7. Start the React development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm start
+```
 
-### `npm run build` fails to minify
+## Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Backend**: The Django backend will run at `http://localhost:8000/` by default.
+2. **Frontend**: The React frontend will run at `http://localhost:3000/` by default.
+
+### Accessing the Application
+
+- Open your browser and go to `http://localhost:3000/` to access the frontend.
+- Use the login page to authenticate with your credentials.
+- After logging in, you can browse users, send interest messages, and more.
+
+## Project Structure
+
+### Backend
+
+- `backend/`
+  - `api/`: Contains the Django REST Framework views, serializers, and URLs for the API.
+  - `auth/`: Handles user authentication and registration using `djoser`.
+  - `settings.py`: Configuration file for the Django project.
+
+### Frontend
+
+- `frontend/`
+  - `src/`
+    - `components/`: Contains reusable components like `CustomPopup`, `Loading`, `BrowseUsers`, `ChatScreen`, `ConnectionList`, `Dashboard`, `Navbar`, `Login`, `Signup`.
+    - `constants/`: Contains default-profile image file.
+
+## Additional Information
+
+### API Endpoints
+
+- **User Authentication**:
+  - `/api/auth/login/`: Login endpoint.
+  - `/api/auth/signup/`: Signup endpoint.
+  - `/api/auth/users/`: Retrieve a list of users.
+  - `/api/auth/interests/send/`: Send an interest message to another user.
+
+### UI/UX Design
+
+The application follows a modern, clean, and responsive design pattern. The design is consistent across all pages, with a dark theme and glowing accent colors to enhance user experience.
+
+### Error Handling
+
+The application includes error handling and popup notifications to inform users about successful or failed actions.
+
+### Security
+
+- User passwords are securely hashed and stored using Django's built-in authentication system.
+- JWT tokens are used for secure API communication between the frontend and backend.
+
+---

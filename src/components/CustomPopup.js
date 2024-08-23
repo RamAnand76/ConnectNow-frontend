@@ -1,5 +1,5 @@
 import React from 'react';
-import './CustomPopup.css';
+import '../styles/CustomPopup.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 

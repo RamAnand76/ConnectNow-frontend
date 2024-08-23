@@ -1,9 +1,7 @@
-// src/pages/Signup.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Signup.css'; // Import the CSS file
+import '../styles/Signup.css'; // Import the CSS file
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -13,6 +11,7 @@ function Signup() {
     username: '',
     password: ''
   });
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -21,11 +20,16 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage(''); // Clear previous error message
     try {
       await axios.post('http://localhost:8000/api/auth/signup/', formData);
-      navigate('/');
+      navigate('/login');
     } catch (error) {
-      alert('Error during sign up');
+      if (error.response && error.response.data) {
+        setErrorMessage(Object.values(error.response.data).join(' '));
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
     }
   };
 
@@ -69,10 +73,11 @@ function Signup() {
             onChange={handleChange}
             required
           />
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
           <button type="submit">Sign Up</button>
         </form>
         <p>
-          Already have an account? <a href="/">Login</a>
+          Already have an account? <a href="/login">Login</a>
         </p>
       </div>
     </div>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaSearch, FaUserCircle, FaSadTear } from 'react-icons/fa';
 import Navbar from './Navbar';
-import './BrowseUsers.css';
+import '../styles/BrowseUsers.css';
 import CustomPopup from './CustomPopup';
 
 function BrowseUsers() {

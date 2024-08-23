@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Navbar.css'; // Import the updated CSS file
+import '../styles/Navbar.css'; // Import the updated CSS file
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUserFriends, faEnvelope, faBell, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';

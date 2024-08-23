@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './ChatScreen.css';
-import './Message.css';
+import '../styles/ChatScreen.css';
+import '../styles/Message.css';
 import axiosInstance from '../axiosInstance';
 import Navbar from './Navbar';
 import defaultProfile from "../constants/default-profile.png";
